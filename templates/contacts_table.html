@@ -1,0 +1,19 @@
+    <table>
+        <thead>
+        <tr>
+            <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th>(1)
+        </tr>
+        </thead>
+        <tbody>
+        {% for contact in contacts %} (2)
+            <tr>
+                <td><%= contact.first %></td>
+                <td><%= contact.last %></td>
+                <td><%= contact.phone %></td>
+                <td><%= contact.email %></td> (3)
+                <td><a href="/contacts/<% contact.id %>/edit">Edit</a>
+                    <a href="/contacts/<% contact.id %>">View</a></td> (4)
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

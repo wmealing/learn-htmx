@@ -1,0 +1,49 @@
+<html>
+<!-- <%= (format nil "~a~%" (uiop:read-file-string "./templates/layout.html" ) ) %> -->
+
+<h1>Contacts.app </h1>
+<h2> A Demo contacts application </h2>
+
+   <form action="/contacts" method="get" class="tool-bar">  
+            <label for="search">Search Term</label>
+            <input id="search" type="search" name="q" value=""/> 
+            <input type="submit" value="Search"/>
+   </form>
+
+   <hr>
+
+  <BR>
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th>
+        </tr>
+        </thead>
+        <tbody>
+           <% loop for person in (@ people) do %>
+            <tr>
+                <td><%= (getf person :first) %></td>
+                <td><%= (getf person :last) %></td>
+                <td><%= (getf person :phone) %></td>
+                <td><%= (getf person :email) %></td>
+                <td><a href="/contacts/3/edit">Edit</a>
+                    <a href="/contacts/3">View</a></td> 
+            </tr>
+              <% end %>
+        </tbody>
+    </table>
+  
+
+
+
+</ul>
+
+
+<br>
+
+
+
+</body>
+</html>
