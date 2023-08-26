@@ -4,16 +4,14 @@
 <h1>Contacts.app </h1>
 <h2> A Demo contacts application </h2>
 
-   <form action="/contacts" method="get" class="tool-bar">  
+   <form action="/contacts" method="get" class="tool-bar">
             <label for="search">Search Term</label>
-            <input id="search" type="search" name="q" value=""/> 
+            <input id="search" type="search" name="q" value=""/>
             <input type="submit" value="Search"/>
    </form>
 
-   <hr>
-
-  <BR>
-
+   <HR>
+   <BR>
 
     <table>
         <thead>
@@ -24,17 +22,24 @@
         <tbody>
            <% loop for person in (@ people) do %>
             <tr>
-                <td><%= (getf person :first) %></td>
-                <td><%= (getf person :last) %></td>
+                <td><%= (getf person :first_name) %></td>
+                <td><%= (getf person :last_name) %></td>
                 <td><%= (getf person :phone) %></td>
                 <td><%= (getf person :email) %></td>
-                <td><a href="/contacts/3/edit">Edit</a>
-                    <a href="/contacts/3">View</a></td> 
+                <td>
+                  <a href="/contacts/<%= (getf person :id 0) %>/edit">Edit</a>
+                  <a href="/contacts/<%= (getf person :id 0) %>">View</a>
+                </td>
             </tr>
               <% end %>
         </tbody>
     </table>
 
+      <p>
+        <a href="/contacts/new">Add Contact</a>
+      </p>
+
+      
 </ul>
 
 

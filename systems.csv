@@ -53,3 +53,7 @@ routes, ghcr.io/ocicl/routes@sha256:5a2eda8694282fbd76c3baeb9d41380714971b000c9a
 puri, ghcr.io/ocicl/puri@sha256:e1c8fdd23d2ecfa603ca591f799a8147df0b05a4fae33b1c779de337010b0a59, puri-4bbab9/puri.asd
 iterate, ghcr.io/ocicl/iterate@sha256:1a814ce6c842cf46160d0ec15ffa9954ec2b96c611d294100c40e1b3a0f507a8, iterate-20230809-4a64b68/iterate.asd
 cl-template, ghcr.io/ocicl/cl-template@sha256:2996b5710a1bc413902fc3f4026aad051e40472f24e929feb058d2454059d650, cl-template-20230809-46193a9/cl-template.asd
+ratify, ghcr.io/ocicl/ratify@sha256:9fa2ebde08fa55253a061c5cc57309a288517efa82b965f8b695e389c7f1d30b, Ratify-20230808-9ce3b6e/ratify.asd
+local-time, ghcr.io/ocicl/local-time@sha256:05e3c510c3bb8d5bd710354d8545377528eb11733ba980b9a0a0d72380818ac9, local-time-20230818-d62b2f9/local-time.asd
+cl-postgres+local-time, ghcr.io/ocicl/local-time@sha256:05e3c510c3bb8d5bd710354d8545377528eb11733ba980b9a0a0d72380818ac9, local-time-20230818-d62b2f9/cl-postgres+local-time.asd
+parse-float, ghcr.io/ocicl/parse-float@sha256:ac97572fb76ce4512e43399ac40f8c7f56e75bcd86e2eb080d3cc501fe22e17c, parse-float-20230809-3074765/parse-float.asd

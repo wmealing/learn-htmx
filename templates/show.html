@@ -1,0 +1,14 @@
+<h1> Contacts.app </h1>
+
+<h1><%= (getf (@ contact) :first_name) %> <%= (getf (@ contact) :last_name) %></h1>
+
+<div>
+  <div>Phone: <%= (getf (@ contact) :phone) %></div>
+  <div>Email: <%= (getf (@ contact) :email) %></div>
+</div>
+
+<p>
+  <a href="/contacts/<%= (getf (@ contact) :id) %>/edit">Edit</a>
+  <a href="/contacts">Back</a>
+</p>
+

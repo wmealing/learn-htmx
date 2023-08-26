@@ -5,12 +5,12 @@
         </tr>
         </thead>
         <tbody>
-        {% for contact in contacts %} (2)
+        {% for contact in (@ contacts) %} (2)
             <tr>
-                <td><%= contact.first %></td>
-                <td><%= contact.last %></td>
-                <td><%= contact.phone %></td>
-                <td><%= contact.email %></td> (3)
+                <td><%= (getf contact :first_name ) %></td>
+                <td><%= (getf contact :last_name  ) %></td>
+                <td><%= (getf contact :phone ) %></td>
+                <td><%= (getf contact :email) %></td> (3)
                 <td><a href="/contacts/<% contact.id %>/edit">Edit</a>
                     <a href="/contacts/<% contact.id %>">View</a></td> (4)
             </tr>

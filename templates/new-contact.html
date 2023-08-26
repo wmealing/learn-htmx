@@ -1,0 +1,53 @@
+<html>
+
+  <%=(format nil "~a~%" (uiop:read-file-string "./templates/layout.html" ) ) %>
+
+<h1>Contacts.app </h1>
+<h2> Add a new contact</h2>
+
+
+<form action="/contacts/new" method="post">
+    <fieldset>
+        <legend>Contact Values</legend>
+        <p>
+            <label for="email">Email</label>
+            <input name="email"
+                   id="email"
+                   type="email"
+                   placeholder="Email"
+                   value="<%= (getf (@  person) :email "") %>">
+            <span class="error"><%= (getf (@ errors) :email "") %></span>
+        </p>
+        <p>
+            <label for="first_name">First Name</label>
+            <input name="first_name"
+                   id="first_name"
+                   type="text"
+                   placeholder="First Name"
+                   value="<%= (getf (@  person) :first_name "") %>">
+            <span class="error"><%= (getf (@ errors) :first_name "") %></span>
+        </p>
+        <p>
+            <label for="last_name">Last Name</label>
+            <input name="last_name"
+                   id="last_name"
+                   type="text"
+                   placeholder="Last Name"
+                   value="<%= (getf (@  person) :last_name "") %>">
+            <span class="error"><%= (getf (@ errors) :last_name "") %></span>
+        </p>
+        <p>
+            <label for="phone">Phone</label>
+            <input name="phone"
+                   id="phone"
+                   type="text"
+                   placeholder="Phone"
+                   value="<%= (getf (@  person) :phone "") %>">
+            <span class="error"><%= (getf (@ errors) :phone "") %></span>
+        </p>
+        <button>Save</button>
+    </fieldset>
+</form>
+<p>
+    <a href="/contacts">Back</a>
+</p>
