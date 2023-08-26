@@ -145,7 +145,7 @@
           ;; otherwise show the errors.
           (apply-template "show.html" (list :contact posted-contact :errors errors))))))
 
-(easy-routes:defroute contact-delete ("/contacts/:id/delete" :method :get) ()
+(easy-routes:defroute contact-delete ("/contacts/:id/delete") ()
   (progn
     (delete-rows (where :id id))
     (hunchentoot:redirect "/contacts")))

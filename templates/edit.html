@@ -37,9 +37,7 @@
         </fieldset>
     </form>
 
-    <form action="/contacts/{{ contact.id }}/delete" method="post">
-        <button>Delete Contact</button>
-    </form>
+    <a href="/contacts/<%= (getf (@ contact) :id)%>/delete">Delete Contact</a>
 
     <p>
         <a href="/contacts/">Back</a>
