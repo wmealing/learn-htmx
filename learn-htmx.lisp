@@ -79,8 +79,13 @@
       *db*
       (select (where :id id))))
 
-(easy-routes:defroute index-contacts ("/contacts" :method :get) ()
+(easy-routes:defroute index-contacts-get ("/contacts" :method :get) ()
   (apply-template "index.html" (list :people *db*)))
+
+;; htmx apparently.
+(easy-routes:defroute index-contacts-post ("/contacts" :method :post) ()
+  (let ((contacts (select-by-contact (hunchentoot:post-parameter "q"))))
+    (apply-template "just-contacts.html" (list :people contacts))))
 
 (easy-routes:defroute contact-new-get ("/contacts/new" :method :get) ()
   (apply-template "new-contact.html" (list :person nil)))
@@ -145,19 +150,16 @@
           ;; otherwise show the errors.
           (apply-template "show.html" (list :contact posted-contact :errors errors))))))
 
-(easy-routes:defroute contact-delete ("/contacts/:id/delete") ()
+(easy-routes:defroute contact-delete-get ("/contacts/:id/delete") ()
   (progn
     (delete-rows (where :id id))
     (hunchentoot:redirect "/contacts")))
 
-;; @app.route("/contacts/<contact_id>/delete", methods=["POST"]) (1)
-;; def contacts_delete(contact_id=0):
-;; contact = Contact.find(contact_id)
-;; contact.delete() (2)
-;; flash("Deleted Contact!")
-;; return redirect("/contacts") (3)
-
-
+(easy-routes:defroute contact-delete-delete ("/contacts/:id" :method :delete) ()
+  (progn
+    (delete-rows (where :id id))
+    (format t "DELETING THE CONTACT~%")
+    (hunchentoot:redirect "/contacts" :code 303)))
 
 (defun start-server (&key (port *port*))
   (format t "~&Starting the web server on port ~a" port)

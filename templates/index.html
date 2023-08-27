@@ -1,18 +1,26 @@
-<html>
-<!-- <%= (format nil "~a~%" (uiop:read-file-string "./templates/layout.html" ) ) %> -->
+<%= (format nil "~a~%" (uiop:read-file-string "./templates/header.html" ) ) %>
 
+<div id="toppage">
+  
 <h1>Contacts.app </h1>
 <h2> A Demo contacts application </h2>
 
+<div id="searchbar">
+
    <form action="/contacts" method="get" class="tool-bar">
-            <label for="search">Search Term</label>
+            <label for="search">Search for: </label>
             <input id="search" type="search" name="q" value=""/>
-            <input type="submit" value="Search"/>
+             <button hx-post="/contacts" hx-target="#main-area" hx-include="#search"> 
+                Search The Contacts
+             </button>
    </form>
 
-   <HR>
-   <BR>
+</div>
 
+<HR>
+
+<div id="main-area">
+  
     <table>
         <thead>
         <tr>
@@ -27,25 +35,25 @@
                 <td><%= (getf person :phone) %></td>
                 <td><%= (getf person :email) %></td>
                 <td>
-                  <a href="/contacts/<%= (getf person :id 0) %>/edit">Edit</a>
-                  <a href="/contacts/<%= (getf person :id 0) %>">View</a>
+                  <a hx-target="#main-area"
+                     hx-get="/contacts/<%= (getf person :id 0) %>/edit"
+                     href="/contacts/<%= (getf person :id 0) %>/edit">
+                    Edit</a>
+                  <a hx-target="#main-area"
+                     hx-get="/contacts/<%= (getf person :id 0) %>"
+                     href="/contacts/<%= (getf person :id 0) %>">View</a>
                 </td>
             </tr>
               <% end %>
         </tbody>
     </table>
+    </div>
 
       <p>
-        <a href="/contacts/new">Add Contact</a>
+        <a href="/contacts/new" hx-get="/contacts/new" hx-target="#main-area">Add Contact</a>
       </p>
 
-      
-</ul>
-
-
-<br>
-
-
-
+</div>
+</div>
 </body>
 </html>

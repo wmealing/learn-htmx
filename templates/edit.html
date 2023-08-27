@@ -1,6 +1,7 @@
-<%= (format nil "~a~%" (uiop:read-file-string "./templates/layout.html" ) ) %>
+<%= (format nil "~a~%" (uiop:read-file-string "./templates/header.html" ) ) %>
 
 <form action="/contacts/<%= (getf (@ contact) :id ) %>/edit" method="post">
+
         <fieldset>
             <legend>Contact Values</legend>
               <p>
@@ -11,34 +12,38 @@
                          value="<%= (getf (@ contact) :email "" ) %>">
                   <span class="error">{{ contact.errors['email'] }}</span>
               </p>
-
-            <p>
+              <p>
                   <label for="first_name">First Name</label>
                   <input name="first_name" id="first_name" type="text" placeholder="First Name"
                          value="<%= (getf (@ contact) :first_name "" ) %>">
                   <span class="error">{{ contact.errors['first'] }}</span>
-            </p>
+              </p>
 
-            <p>
+               <p>
                   <label for="last_name">Last Name</label>
                   <input name="last_name" id="last_name" type="text" placeholder="Last Name"
                          value="<%= (getf (@ contact) :last_name "" ) %>">
                   <span class="error">{{ contact.errors['last'] }}</span>
-            </p>
+              </p>
 
-            <p>
+              <p>
                   <label for="phone">Phone</label>
                   <input name="phone" id="phone" type="text" placeholder="Phone"
                          value="<%= (getf (@ contact) :phone "" ) %>">
                   <span class="error">{{ contact.errors['phone'] }}</span>
-            </p>
+              </p>
 
             <button>Save</button>
+
         </fieldset>
-    </form>
 
-    <a href="/contacts/<%= (getf (@ contact) :id)%>/delete">Delete Contact</a>
+</form>
 
+    <p>
+    <a hx-delete="/contacts/<%= (getf (@ contact) :id)%>"
+       hx-target="#toppage"
+       href="/contacts/<%= (getf (@ contact) :id)%>">
+      Delete Contact</a>
     <p>
         <a href="/contacts/">Back</a>
     </p>

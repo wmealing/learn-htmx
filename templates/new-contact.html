@@ -1,14 +1,7 @@
-<html>
-
-  <%=(format nil "~a~%" (uiop:read-file-string "./templates/layout.html" ) ) %>
-
-<h1>Contacts.app </h1>
-<h2> Add a new contact</h2>
-
-
 <form action="/contacts/new" method="post">
+
     <fieldset>
-        <legend>Contact Values</legend>
+        <legend>Add a new contact</legend>
         <p>
             <label for="email">Email</label>
             <input name="email"
