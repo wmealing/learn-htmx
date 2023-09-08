@@ -6,6 +6,10 @@
   "Server instance (Hunchentoot acceptor).")
 
 (defvar *db* nil)
+
+(defun get-db ()
+  *db*)
+
 (setq *db* nil)
 
 (defvar *next* 3)
@@ -88,7 +92,11 @@
     (apply-template "just-contacts.html" (list :people contacts))))
 
 (easy-routes:defroute contact-new-get ("/contacts/new" :method :get) ()
-  (apply-template "new-contact.html" (list :person nil)))
+  (apply-template "new-contact.html" (list :person '(:id ""
+                                                     :first_name ""
+                                                     :last_name ""
+                                                     :email ""
+                                                     :phone "") :errors '(:first_name ""))))
 
 ;; TODO use some validation magic here, return errors.
 (defun validate-contact (contact)
@@ -125,6 +133,7 @@
   (let ((contact (first (select-by-contact-id id))))
     (apply-template "edit.html" (list :contact contact))))
 
+
 (easy-routes:defroute contact-edit-screen-post ("/contacts/:id/edit" :method :post) ()
   (let* ((email (hunchentoot:post-parameter "email"))
          (first_name (hunchentoot:post-parameter "first_name"))
@@ -136,16 +145,21 @@
                            :phone      ,phone
                            :id         ,id)))
 
+    (format t "YEAH POST ?~%")
+    (format t "POSTED CONTACT: ~A~%" posted-contact)
+
     ;; validate things here.
     ;;(add-contact posted-contact)
-
-
     (let ((errors (validate-contact posted-contact)))
 
       (if (not errors)
           ;; no errors update the contact
           (progn
-            (update (where :id id) :email email :first_name first_name :phone phone)
+            (update (where :id id) :email email
+                                   :first_name first_name
+                                   :last_name last_name
+                                   :phone phone)
+
             (hunchentoot:redirect "/contacts"))
           ;; otherwise show the errors.
           (apply-template "show.html" (list :contact posted-contact :errors errors))))))

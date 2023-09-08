@@ -1,59 +1,33 @@
 <%= (format nil "~a~%" (uiop:read-file-string "./templates/header.html" ) ) %>
 
-<div id="toppage">
-  
-<h1>Contacts.app </h1>
-<h2> A Demo contacts application </h2>
+<div id="toppage" class="w-90">  
+  <h1 class="my-0 px-10 text-2xl text-right w-20">Contacts.app </h1>
 
-<div id="searchbar">
+  <div id="searchbar" class="px-10 text-left">
 
-   <form action="/contacts" method="get" class="tool-bar">
-            <label for="search">Search for: </label>
-            <input id="search" type="search" name="q" value=""/>
-             <button hx-post="/contacts" hx-target="#main-area" hx-include="#search"> 
-                Search The Contacts
-             </button>
-   </form>
+    <form action="/contacts" method="get" class="tool-bar">
+      <label for="search">Search for: </label>
+      <input class="bg-sky-200 rounded-sm px-2"
+             id="search" type="search" name="q" value=""/ >
+      <button class="bg-sky-600 hover:bg-fsky-700 px-2 py-0 text-white rounded"
+              hx-post="/contacts" hx-target="#main-area" hx-include="#search"> 
+        Search Contacts
+      </button>
+    </form>
 
-</div>
+  </div>
 
-<HR>
+  <div id="main-area" class="place-content-center px-10 pt-2 w-90">
+    <%= (learn-htmx:apply-template "just-contacts.html" (list :people (learn-htmx:get-db) )) %>
+  </div>
 
-<div id="main-area">
-  
-    <table>
-        <thead>
-        <tr>
-            <th>First</th> <th>Last</th> <th>Phone</th> <th>Email</th> <th></th>
-        </tr>
-        </thead>
-        <tbody>
-           <% loop for person in (@ people) do %>
-            <tr>
-                <td><%= (getf person :first_name) %></td>
-                <td><%= (getf person :last_name) %></td>
-                <td><%= (getf person :phone) %></td>
-                <td><%= (getf person :email) %></td>
-                <td>
-                  <a hx-target="#main-area"
-                     hx-get="/contacts/<%= (getf person :id 0) %>/edit"
-                     href="/contacts/<%= (getf person :id 0) %>/edit">
-                    Edit</a>
-                  <a hx-target="#main-area"
-                     hx-get="/contacts/<%= (getf person :id 0) %>"
-                     href="/contacts/<%= (getf person :id 0) %>">View</a>
-                </td>
-            </tr>
-              <% end %>
-        </tbody>
-    </table>
-    </div>
+  <div class="w-90 place-content-center px-10 pt-2 w-90">
+  <p class="flex flex-row">
+    <a class="basis-1/4 bg-sky-600 hover:bg-fsky-700 px-2 py-1 text-white rounded  m-2"
+       href="/contacts/new" hx-get="/contacts/new" hx-target="#main-area">Add new Contact
+    </a>
+  </p>
+  </div>
 
-      <p>
-        <a href="/contacts/new" hx-get="/contacts/new" hx-target="#main-area">Add Contact</a>
-      </p>
-
-</div>
-</div>
 </body>
 </html>

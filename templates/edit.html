@@ -2,48 +2,18 @@
 
 <form action="/contacts/<%= (getf (@ contact) :id ) %>/edit" method="post">
 
-        <fieldset>
-            <legend>Contact Values</legend>
-              <p>
-                  <label for="email">Email</label>
-                  <input name="email"
-                         id="email" type="text"
-                         placeholder="Email"
-                         value="<%= (getf (@ contact) :email "" ) %>">
-                  <span class="error">{{ contact.errors['email'] }}</span>
-              </p>
-              <p>
-                  <label for="first_name">First Name</label>
-                  <input name="first_name" id="first_name" type="text" placeholder="First Name"
-                         value="<%= (getf (@ contact) :first_name "" ) %>">
-                  <span class="error">{{ contact.errors['first'] }}</span>
-              </p>
-
-               <p>
-                  <label for="last_name">Last Name</label>
-                  <input name="last_name" id="last_name" type="text" placeholder="Last Name"
-                         value="<%= (getf (@ contact) :last_name "" ) %>">
-                  <span class="error">{{ contact.errors['last'] }}</span>
-              </p>
-
-              <p>
-                  <label for="phone">Phone</label>
-                  <input name="phone" id="phone" type="text" placeholder="Phone"
-                         value="<%= (getf (@ contact) :phone "" ) %>">
-                  <span class="error">{{ contact.errors['phone'] }}</span>
-              </p>
-
-            <button>Save</button>
-
-        </fieldset>
+      <%= (learn-htmx:apply-template "single-contact.html" (list :title "Edit contact"
+          :contact (@ contact )
+          :post-location (format nil "contacts/~A/edit" (getf ( @ contact) :id))
+          ))
+          %>
 
 </form>
 
-    <p>
-    <a hx-delete="/contacts/<%= (getf (@ contact) :id)%>"
+<p>
+    <a class="basis-1/4 bg-sky-600 hover:bg-fsky-700 px-2 py-1 text-white rounded m-2"
+      hx-trigger="click"
+       hx-delete="/contacts/<%= (getf (@ contact) :id)%>"
        hx-target="#toppage"
-       href="/contacts/<%= (getf (@ contact) :id)%>">
-      Delete Contact</a>
-    <p>
-        <a href="/contacts/">Back</a>
-    </p>
+       href="/contacts/<%= (getf (@ contact) :id)%>">Delete Contact</a>
+</p>

@@ -1,0 +1,31 @@
+    <table class="w-100 border-20">
+        <thead>
+        <tr>
+            <th>First</th> <th>Last</th> <th>Phone</th> <th>!Email</th> <th></th>
+        </tr>
+        </thead>
+        <tbody>
+           <% loop for person in (@ people) do %>
+            <tr>
+                <td class="outline-dotted px-2"><%= (getf person :first_name) %></td>
+                <td class="outline-dotted px-2"><%= (getf person :last_name) %></td>
+                <td class="outline-dotted px-2"><%= (getf person :phone) %></td>
+                <td class="outline-dotted px-2"><%= (getf person :email) %></td>
+                <td class="outline-dotted px-2">
+
+                  <a class="bg-sky-200 rounded-sm px-2"
+                     hx-target="#main-areap"
+                     hx-get="/contacts/<%= (getf person :id 0) %>/edit">Edit</a>
+
+                  <a class="bg-sky-200 rounded-sm px-2"
+                     hx-target="#main-area"
+                     hx-get="/contacts/<%= (getf person :id 0) %>">View</a>
+                </td>
+            </tr>
+              <% end %>
+        </tbody>
+    </table>
+
+
+
+

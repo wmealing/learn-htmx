@@ -2,4 +2,4 @@
 
 (defpackage #:learn-htmx
   (:use #:cl #:cl-template)
-  (:export :start-server :stop-server :add-contact))
+  (:export :start-server :stop-server :add-contact :apply-template :get-db))
