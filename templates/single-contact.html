@@ -1,7 +1,5 @@
-<form action="/contacts/new" method="post" class="form-inline">
-
     <fieldset class="w-full">
-        <legend class="text-2xl">Add a new Contact</legend>
+        <legend class="text-2xl"><%= (@ title ) %></legend>
 
         <p class="flex flex-row">
           <label for="email" class="basis-1/4 text-gray-700 text-lg">
@@ -13,7 +11,7 @@
               id="email"
               type="email"
               placeholder="Email"
-              value="<%= (getf (@  person) :email "") %>">
+              value="<%= (getf (@ contact) :email "") %>">
             <span class="error"><%= (getf (@ errors) :email "") %></span>
         </p>
         <p class="flex flex-row">
@@ -26,7 +24,7 @@
               id="first_name"
               type="text"
               placeholder="First Name"
-              value="<%= (getf (@  person) :first_name "") %>">
+              value="<%= (getf (@ contact) :first_name "") %>">
             <span class="error"><%= (getf (@ errors) :first_name "") %></span>
         </p>
         <p class="flex flex-row">
@@ -40,7 +38,7 @@
               id="last_name"
               type="text"
               placeholder="Last Name"
-              value="<%= (getf (@  person) :last_name "") %>">
+              value="<%= (getf (@  contact) :last_name "") %>">
             <span class="error"><%= (getf (@ errors) :last_name "") %></span>
         </p>
         <p class="flex flex-row">
@@ -53,8 +51,8 @@
               name="phone"
               id="phone"
               type="text"
-              placeholder="Phone"
-              value="<%= (getf (@ person ) :phone "") %>">
+             placeholder="Phone"
+              value="<%= (getf (@ contact ) :phone "") %>">
             <span class="error"><%= (getf (@ errors) :phone "") %></span>
 
         </p>
@@ -67,13 +65,12 @@
             Back
           </a>
 
-          <a href="/contacts/new"
+          <a href="<%= (@ post-location )%>"
              class="basis-1/4 bg-sky-600 hover:bg-fsky-700 px-2 py-1 text-white rounded m-2"
              hx-trigger="click"
-             hx-post="/contacts/new"
+             hx-post="<%= (@ post-location)%>"
              hx-target="#toppage"
-             hx-include=".editform"
-             href="/contacts/new">
+             hx-include=".editform">
             Save
           </a>
 
@@ -82,4 +79,3 @@
         </p>
 
     </fieldset>
-</form>

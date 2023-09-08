@@ -1,22 +1,5 @@
-<h1><%= (getf (@ contact) :first_name) %> <%= (getf (@ contact) :last_name) %></h1>
 
-<div>
-  <div>Phone: <%= (getf (@ contact) :phone) %></div>
-  <div>Email: <%= (getf (@ contact) :email) %></div>
-</div>
-
-<p>
-  <a href="/contacts/<%= (getf (@ contact) :id) %>/edit"
-     hx-get="/contacts/<%= (getf (@ contact) :id) %>/edit"
-     hx-target="#main-area">
-    Edit</a>
-
-  <a href="/contacts/<%= (getf (@ contact) :id) %>"
-     hx-target="#toppage"
-     hx-delete="/contacts/<%= (getf (@ contact) :id) %>">
-    Delete</a>
-
- <a href="#" href="/contacts">Back</a>
-</p>
-
+<%= (learn-htmx:apply-template "single-contact-show.html" (list
+    :contact (@ contact ) :title "Showing contact")
+    )) %>
 

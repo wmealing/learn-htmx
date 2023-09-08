@@ -1,0 +1,21 @@
+<div><%= (@ title ) %> :
+ <%= (getf (@ contact) :first_name ) %>
+ <%= (getf (@ contact) :last_name ) %>
+ </div>
+
+<hr>
+
+<div>
+  Email: <%= (getf (@ contact) :email ) %>
+</div>
+
+<div>
+<%= (getf (@ contact) :phone) %>
+</div>
+
+<p class="flex flex-row">
+  <a href="/contacts"
+     class="basis-1/4 bg-sky-600 hover:bg-fsky-700 px-2 py-1 text-white rounded m-2">
+    Back
+  </a>
+</p>
