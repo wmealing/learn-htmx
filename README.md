@@ -6,5 +6,19 @@ unfinished as I test new ideas along the way.
 
 ## License
 
+Instructions:
+
+Within cl:
+
+* (ql:quickload "learn-htmx")
+
+ and start the server 
+
+* (learn-htmx:start-server)
+
+Visit the stated URL in the browser.
+
+## License
+
 MIT.
 
