@@ -8,6 +8,9 @@ unfinished as I test new ideas along the way.
 
 Instructions:
 
+- Setup quicklisp
+- Copy this repo to the ~/quicklisp/local-projects/ directory.
+
 Within cl:
 
 * (ql:quickload "learn-htmx")
